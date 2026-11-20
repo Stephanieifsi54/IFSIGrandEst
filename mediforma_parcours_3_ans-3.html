@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102b40">
+<title>MÉDIFORMA — Formation en soins infirmiers</title>
+<style>
+:root{--navy:#102b40;--navy2:#183c53;--teal:#2d9b8c;--mint:#e9f5f2;--ink:#1b2933;--muted:#667784;--line:#dce5e9;--paper:#f5f8f9;--white:#fff;--gold:#d6a34b}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,var(--navy),#1c5261);color:white;padding:26px max(20px,calc((100% - 1100px)/2)) 22px}
+.brand{font-size:12px;letter-spacing:.22em;color:#b9d9d7;font-weight:700}.hero{display:flex;justify-content:space-between;gap:20px;align-items:end;flex-wrap:wrap}h1{font-size:clamp(30px,5vw,48px);line-height:1.05;margin:10px 0 6px;letter-spacing:.04em}.hero p{margin:0;color:#d5e5e8}.tag{border:1px solid #7ba9a8;border-radius:99px;padding:7px 12px;font-size:12px;color:#e5f3f1}
+nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);display:flex;gap:6px;overflow:auto;padding:10px max(12px,calc((100% - 1100px)/2));box-shadow:0 3px 12px #102b400c}
+nav button{border:0;background:transparent;color:var(--muted);padding:10px 14px;border-radius:10px;font-weight:650;white-space:nowrap;cursor:pointer}nav button.active{background:var(--navy);color:#fff}
+main{max-width:1100px;margin:26px auto;padding:0 18px 60px}.panel{display:none}.panel.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:15px}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 6px 20px #102b4008}.card h3{margin:0 0 8px;color:var(--navy)}h2{color:var(--navy);font-size:25px;margin:0 0 8px}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:800}.muted{color:var(--muted)}.stat{font-size:32px;font-weight:800;color:var(--teal)}button,.btn{cursor:pointer}.primary{background:var(--teal);color:white;border:0;padding:11px 16px;border-radius:10px;font-weight:700}.secondary{background:#edf3f5;color:var(--navy);border:1px solid var(--line);padding:10px 14px;border-radius:10px;font-weight:650}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.callout{background:var(--mint);border-left:4px solid var(--teal);padding:13px 15px;border-radius:8px;margin:14px 0}.warning{background:#fff6e7;border-left:4px solid var(--gold);padding:13px 15px;border-radius:8px;margin:14px 0}
+ul{padding-left:22px}li{margin:5px 0}.lesson{margin:15px 0}.lesson h3{color:var(--navy);margin-bottom:5px}.quiz-option{display:block;width:100%;text-align:left;background:white;border:1px solid var(--line);border-radius:11px;padding:13px;margin:8px 0;color:var(--ink)}.quiz-option.selected{border:2px solid var(--teal);background:var(--mint)}.feedback{padding:14px;border-radius:12px;margin-top:12px}.good{background:#e8f6ee;color:#175b38}.bad{background:#fff2e7;color:#8a4c17}
+input[type=search]{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font:inherit;margin:12px 0}
+svg{max-width:100%;height:auto}.anatomy-wrap{background:#f7fbfc;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}.legend{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:13px}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;border-top:1px solid var(--line)}
+@media(max-width:600px){header{padding:22px 18px}main{margin-top:18px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<header><div class="hero"><div><div class="brand">PLATEFORME DE FORMATION • SOINS INFIRMIERS</div><h1>MÉDIFORMA</h1><p>Apprendre · Comprendre · S'entraîner · Progresser</p></div><span class="tag">MODULE 1 • CARDIOLOGIE</span></div></header>
+<nav aria-label="Navigation principale">
+<button class="active" data-tab="accueil">Accueil</button><button data-tab="parcours">Parcours 3 ans</button><button data-tab="cours">Cours</button><button data-tab="quiz">QCM</button><button data-tab="cas">Études de cas</button><button data-tab="anatomie">Schéma anatomique</button><button data-tab="lexique">Lexique</button>
+</nav>
+<main>
+<section id="accueil" class="panel active">
+<div class="eyebrow">Ton espace d'apprentissage</div><h2>Bienvenue dans ton parcours IFSI</h2><p><strong>Trois années, trois niveaux :</strong> les contenus deviennent progressivement plus approfondis et les situations cliniques plus complexes.</p><button class="primary" data-go="parcours">Découvrir le parcours des 3 années</button><p class="muted">Une première base interactive construite à partir des fiches transmises : cours, entraînement, situations cliniques et vocabulaire.</p>
+<div class="grid">
+<div class="card"><div class="stat">01</div><h3>Comprendre</h3><p>Cours organisés autour de l'anatomie, de la physiologie et des pathologies cardiovasculaires.</p><button class="secondary" data-go="cours">Ouvrir les cours →</button></div>
+<div class="card"><div class="stat">02</div><h3>Vérifier ses acquis</h3><p>QCM avec correction immédiate et explication pédagogique.</p><button class="secondary" data-go="quiz">Faire un QCM →</button></div>
+<div class="card"><div class="stat">03</div><h3>Raisonner en situation</h3><p>Cas cliniques progressifs et conduite à tenir à discuter.</p><button class="secondary" data-go="cas">Voir les cas →</button></div>
+<div class="card"><div class="stat">04</div><h3>Mémoriser</h3><p>Schéma du cœur et lexique médical consultable.</p><button class="secondary" data-go="anatomie">Explorer →</button></div>
+</div>
+<div class="callout"><strong>Mode audio :</strong> utilise « Écouter » dans les rubriques pour faire lire le contenu par la voix de ton navigateur. La disponibilité des voix dépend de ton appareil.</div>
+<div class="warning"><strong>Important :</strong> support pédagogique de révision, pas un protocole de soins. Les prescriptions, actes et compétences doivent être vérifiés dans les textes officiels en vigueur, les protocoles de l'établissement et auprès de l'encadrement.</div>
+</section>
+
+
+<section id="parcours" class="panel">
+<div class="eyebrow">Progression pédagogique • IFSI</div>
+<h2>Un parcours construit sur trois années</h2>
+<p class="muted">Chaque année possède ses propres objectifs. Les notions sont introduites, approfondies puis mobilisées dans des situations de plus en plus complexes. Le contenu actuellement développé dans cette version concerne principalement les fondamentaux de première année.</p>
+<div class="grid">
+<article class="card"><div class="eyebrow">Année 1 • Fondations</div><h3>Découvrir et comprendre</h3>
+<ul><li>Anatomie et physiologie</li><li>Vocabulaire et lexique médical</li><li>Constantes et surveillance clinique initiale</li><li>Hygiène, confort et sécurité</li><li>Recueil de données et observation</li><li>Premiers calculs et conversions</li><li>Premières situations cliniques guidées</li></ul>
+<div class="callout"><strong>Objectif :</strong> acquérir les connaissances de base et apprendre à observer, décrire et transmettre.</div>
+<span class="tag" style="background:#e8f6ee;color:#175b38;border-color:#b9dfc8">Niveau actuellement ouvert</span>
+</article>
+<article class="card"><div class="eyebrow">Année 2 • Approfondissement</div><h3>Analyser et agir</h3>
+<ul><li>Physiopathologie approfondie</li><li>Examens biologiques et explorations</li><li>Pharmacologie et surveillance thérapeutique</li><li>Analyse de situations cliniques</li><li>Raisonnement clinique et diagnostics infirmiers</li><li>Planification et coordination des soins</li><li>Transmissions ciblées et travail en équipe</li></ul>
+<div class="callout"><strong>Objectif :</strong> relier les signes cliniques aux pathologies, comprendre les traitements et argumenter les surveillances.</div>
+<span class="tag" style="background:#edf4fb;color:#245b86;border-color:#c8dced">Niveau à développer</span>
+</article>
+<article class="card"><div class="eyebrow">Année 3 • Consolidation</div><h3>Prioriser et prendre du recul</h3>
+<ul><li>Situations complexes et polypathologies</li><li>Urgences et priorisation des soins</li><li>Raisonnement clinique approfondi</li><li>Projet de soins individualisé</li><li>Coordination, parcours et continuité des soins</li><li>Analyse de pratiques et posture professionnelle</li><li>Préparation aux évaluations et à la certification</li></ul>
+<div class="callout"><strong>Objectif :</strong> mobiliser les connaissances, prioriser, argumenter et adapter les soins dans des situations complexes.</div>
+<span class="tag" style="background:#f4effa;color:#69458a;border-color:#ddcdeb">Niveau à développer</span>
+</article>
+</div>
+<div class="card" style="margin-top:16px"><h3>Comment les matières évolueront</h3>
+<p><strong>Exemple en cardiologie :</strong></p>
+<ul><li><strong>1re année :</strong> anatomie du cœur, circulation sanguine, fréquence cardiaque, pression artérielle et observation des signes.</li><li><strong>2e année :</strong> mécanismes de l'insuffisance cardiaque et de l'infarctus, examens, traitements et surveillances associées.</li><li><strong>3e année :</strong> patient présentant plusieurs pathologies, signes de décompensation, priorisation, coordination et argumentation du projet de soins.</li></ul>
+<p class="muted">Cette progression est une architecture pédagogique proposée. Elle devra être ajustée aux unités d'enseignement, référentiels et objectifs de ton IFSI.</p>
+</div>
+</section>
+
+<section id="cours" class="panel">
+<div class="eyebrow">Apprentissage • Niveau 1</div><h2>Le système cardio-vasculaire et circulatoire</h2>
+<div class="card lesson"><h3>1. Fonction générale</h3><p>Le système cardio-vasculaire est une boucle fermée de transport. Sa fonction principale est d'assurer la perfusion continue des tissus en oxygène (O₂) et en nutriments, et d'éliminer les déchets métaboliques, notamment le dioxyde de carbone (CO₂). Il repose sur une pompe synchrone — le myocarde — et un réseau de vaisseaux : artères, capillaires et veines.</p></div>
+<div class="card lesson"><h3>2. Anatomie du cœur</h3><p>Le cœur est un muscle creux situé dans le médiastin. Il comprend quatre cavités : oreillette droite, ventricule droit, oreillette gauche et ventricule gauche. Le septum interventriculaire sépare les deux ventricules.</p><p>Les valves auriculo-ventriculaires sont la tricuspide à droite et la mitrale à gauche. Les valves sigmoïdes sont la pulmonaire à droite et l'aortique à gauche. Elles limitent le reflux sanguin.</p></div>
+<div class="card lesson"><h3>3. Circulation sanguine</h3><ul><li><strong>Cœur droit :</strong> reçoit le sang désoxygéné et l'envoie vers les poumons par l'artère pulmonaire.</li><li><strong>Poumons :</strong> le sang s'oxygène.</li><li><strong>Cœur gauche :</strong> reçoit le sang oxygéné par les veines pulmonaires et l'éjecte dans l'aorte.</li></ul></div>
+<div class="card lesson"><h3>4. Constantes mentionnées dans la fiche</h3><ul><li>Fréquence cardiaque adulte : 60 à 100 bpm.</li><li>Pression artérielle de référence indiquée : 120/80 mmHg.</li><li>Temps de recoloration cutanée : inférieur à 2 secondes.</li></ul><p class="muted">Les seuils d'alerte dépendent du contexte clinique, de l'âge, des antécédents et des protocoles locaux.</p></div>
+<div class="card lesson"><h3>5. Deux urgences majeures décrites</h3><p><strong>Infarctus du myocarde :</strong> occlusion aiguë d'une artère coronaire pouvant provoquer une ischémie puis une nécrose du tissu cardiaque.</p><p><strong>Insuffisance cardiaque gauche aiguë / OAP :</strong> le ventricule gauche n'éjecte plus suffisamment le sang ; la pression augmente en amont et du liquide peut envahir les alvéoles pulmonaires.</p></div>
+<div class="actions"><button class="primary" onclick="speak(document.getElementById('cours').innerText)">▶ Écouter le cours</button><button class="secondary" onclick="stopSpeech()">Arrêter l'audio</button></div>
+</section>
+
+<section id="quiz" class="panel">
+<div class="eyebrow">Entraînement • Feedback immédiat</div><h2>QCM cardio-vasculaire</h2><p class="muted">Choisis une réponse puis valide pour afficher la correction.</p>
+<div class="card"><div id="qcount" class="eyebrow">Question 1 / 5</div><h3 id="question">Quelle structure est le pacemaker naturel du cœur ?</h3><div id="options"></div><div class="actions"><button class="primary" id="validate">Valider ma réponse</button><button class="secondary" id="next" hidden>Question suivante →</button><button class="secondary" onclick="speak(document.getElementById('question').innerText)">▶ Écouter la question</button></div><div id="feedback" aria-live="polite"></div><p id="score" class="muted"></p></div>
+</section>
+
+<section id="cas" class="panel">
+<div class="eyebrow">Mise en situation • Raisonnement clinique</div><h2>Cas clinique : M. Charles, 67 ans</h2>
+<div class="card"><p>Lors de votre service du matin, vous répondez à la sonnette. M. Charles est assis au bord de son lit. Il est très angoissé, présente des sueurs profuses et une coloration bleutée des lèvres. Il respire rapidement et bruyamment et décrit une sensation d'étouffement avec oppression thoracique.</p><h3>Question 1 — Repérage</h3><p>Quels signes doivent vous alerter immédiatement ?</p><button class="secondary" onclick="toggleAnswer('a1')">Afficher les éléments attendus</button><div id="a1" hidden class="callout">Détresse respiratoire, cyanose, sueurs, angoisse importante, respiration rapide/bruyante et oppression thoracique. Cette association impose une alerte urgente.</div><h3>Question 2 — Actions immédiates</h3><p>Quelles actions de sécurité et quelles constantes relever selon les consignes de la fiche ?</p><button class="secondary" onclick="toggleAnswer('a2')">Afficher le corrigé de la fiche</button><div id="a2" hidden class="callout">La fiche attend notamment : installer le patient assis à 90° jambes pendantes, ne pas le laisser seul, mesurer FR, SpO₂, FC et PA, et alerter immédiatement selon l'organisation et les protocoles applicables. L'oxygénothérapie relève du protocole et de l'évaluation clinique.</div><h3>Question 3 — Hypothèse clinique</h3><p>Quelle complication est évoquée dans le document ?</p><button class="secondary" onclick="toggleAnswer('a3')">Afficher l'explication</button><div id="a3" hidden class="callout">Une insuffisance cardiaque gauche aiguë compliquée d'un œdème aigu du poumon (OAP) est suspectée. La défaillance du ventricule gauche entraîne une accumulation de sang en amont dans la circulation pulmonaire ; la pression hydrostatique augmente et du liquide peut passer dans les alvéoles, gênant les échanges gazeux.</div><div class="actions"><button class="primary" onclick="speak(document.getElementById('cas').innerText)">▶ Écouter le cas et le corrigé</button><button class="secondary" onclick="stopSpeech()">Arrêter l'audio</button></div></div>
+</section>
+
+<section id="anatomie" class="panel">
+<div class="eyebrow">Repères anatomiques</div><h2>Le cœur et la circulation</h2><p class="muted">Schéma pédagogique simplifié : bleu = sang désoxygéné ; rouge = sang oxygéné. Les flèches indiquent le sens du flux.</p>
+<div class="anatomy-wrap">
+<svg viewBox="0 0 760 490" role="img" aria-label="Schéma simplifié des quatre cavités du cœur et de la circulation pulmonaire et systémique">
+<defs><marker id="arrB" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#2788bd"/></marker><marker id="arrR" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#d85b55"/></marker></defs>
+<rect x="250" y="105" width="115" height="100" rx="20" fill="#dceef7" stroke="#2788bd" stroke-width="3"/><rect x="250" y="250" width="115" height="120" rx="20" fill="#c9e4f3" stroke="#2788bd" stroke-width="3"/>
+<rect x="395" y="105" width="115" height="100" rx="20" fill="#f9e2df" stroke="#d85b55" stroke-width="3"/><rect x="395" y="250" width="115" height="120" rx="20" fill="#f4cbc6" stroke="#d85b55" stroke-width="3"/>
+<text x="307" y="148" text-anchor="middle" font-size="15" fill="#17384a">Oreillette</text><text x="307" y="168" text-anchor="middle" font-size="15" fill="#17384a">droite</text>
+<text x="307" y="300" text-anchor="middle" font-size="15" fill="#17384a">Ventricule</text><text x="307" y="320" text-anchor="middle" font-size="15" fill="#17384a">droit</text>
+<text x="452" y="148" text-anchor="middle" font-size="15" fill="#71312d">Oreillette</text><text x="452" y="168" text-anchor="middle" font-size="15" fill="#71312d">gauche</text>
+<text x="452" y="300" text-anchor="middle" font-size="15" fill="#71312d">Ventricule</text><text x="452" y="320" text-anchor="middle" font-size="15" fill="#71312d">gauche</text>
+<path d="M307 205 V248" stroke="#2788bd" stroke-width="5" marker-end="url(#arrB)"/><path d="M452 205 V248" stroke="#d85b55" stroke-width="5" marker-end="url(#arrR)"/>
+<path d="M250 150 H125 V70 H310" fill="none" stroke="#2788bd" stroke-width="5" marker-end="url(#arrB)"/><text x="120" y="45" font-size="15" fill="#17648e">Veines caves</text>
+<path d="M365 310 H620 V85 H510" fill="none" stroke="#2788bd" stroke-width="5" marker-end="url(#arrB)"/><text x="540" y="55" font-size="15" fill="#17648e">Artère pulmonaire</text>
+<rect x="300" y="5" width="160" height="45" rx="12" fill="#eef5f7" stroke="#9bb4bf"/><text x="380" y="33" text-anchor="middle" font-size="16" fill="#183c53">Poumons</text>
+<path d="M510 150 H650 V410 H452 V372" fill="none" stroke="#d85b55" stroke-width="5" marker-end="url(#arrR)"/><text x="560" y="438" font-size="15" fill="#a43d39">Aorte / organes</text>
+<path d="M395 150 H380 V50" fill="none" stroke="#d85b55" stroke-width="5" marker-end="url(#arrR)"/>
+<path d="M365 150 H220 V410 H307 V372" fill="none" stroke="#2788bd" stroke-width="2" stroke-dasharray="5 6"/>
+<text x="380" y="395" text-anchor="middle" font-size="13" fill="#60727c">Septum interventriculaire entre les ventricules</text>
+</svg>
+<div class="legend"><span><i class="dot" style="background:#2788bd"></i>Sang désoxygéné</span><span><i class="dot" style="background:#d85b55"></i>Sang oxygéné</span></div>
+</div>
+<div class="callout"><strong>À mémoriser :</strong> cœur droit → poumons → cœur gauche → aorte et organes. Le schéma est volontairement simplifié et ne remplace pas un atlas anatomique.</div>
+<button class="primary" onclick="speak('Le cœur droit reçoit le sang désoxygéné et l’envoie aux poumons par l’artère pulmonaire. Le sang oxygéné revient au cœur gauche par les veines pulmonaires. Le ventricule gauche l’éjecte ensuite dans l’aorte.')">▶ Écouter le trajet du sang</button>
+</section>
+
+<section id="lexique" class="panel">
+<div class="eyebrow">Vocabulaire essentiel</div><h2>Lexique médical</h2><input id="searchLex" type="search" placeholder="Rechercher un terme…">
+<div id="terms" class="grid"></div>
+</section>
+</main>
+<footer>MÉDIFORMA • Support pédagogique personnel • Références et compétences réglementaires à vérifier auprès des sources officielles.</footer>
+<script>
+const tabs=[...document.querySelectorAll('nav button')];
+function showTab(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));tabs.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));window.scrollTo({top:0,behavior:'smooth'});}
+tabs.forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.go)));
+function speak(text){if(!('speechSynthesis'in window)){alert("La lecture audio n'est pas prise en charge par ce navigateur.");return;}stopSpeech();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.94;speechSynthesis.speak(u)}
+function stopSpeech(){if('speechSynthesis'in window)speechSynthesis.cancel()}
+function toggleAnswer(id){const e=document.getElementById(id);e.hidden=!e.hidden}
+const questions=[
+{q:"Quelle structure est le pacemaker naturel du cœur ?",o:["Le faisceau de His","Le nœud sinusal","Le réseau de Purkinje"],a:1,e:"Le nœud sinusal impose normalement le rythme sinusal physiologique."},
+{q:"Quelle valve se situe entre l'oreillette droite et le ventricule droit ?",o:["La valve mitrale","La valve aortique","La valve tricuspide"],a:2,e:"La valve tricuspide est la valve auriculo-ventriculaire droite."},
+{q:"Quel vaisseau transporte le sang du ventricule droit vers les poumons ?",o:["L'aorte","L'artère pulmonaire","Les veines pulmonaires"],a:1,e:"L'artère pulmonaire conduit le sang désoxygéné du ventricule droit vers les poumons."},
+{q:"Quel marqueur est cité dans la fiche pour rechercher une nécrose myocardique ?",o:["Le BNP","La CRP","La troponine"],a:2,e:"La troponine est le marqueur biologique cité pour la nécrose des cellules myocardiques."},
+{q:"Quel est le temps de recoloration cutanée indiqué comme normal dans la fiche ?",o:["Moins de 2 secondes","Entre 5 et 7 secondes","Plus de 10 secondes"],a:0,e:"La fiche indique un TRC inférieur à 2 secondes comme valeur de référence."}
+];
+let qi=0,selected=-1,score=0,answered=false;
+function renderQ(){let q=questions[qi];document.getElementById('qcount').textContent=`Question ${qi+1} / ${questions.length}`;document.getElementById('question').textContent=q.q;document.getElementById('options').innerHTML=q.o.map((x,i)=>`<button class="quiz-option ${selected===i?'selected':''}" data-i="${i}">${String.fromCharCode(65+i)} — ${x}</button>`).join('');document.querySelectorAll('.quiz-option').forEach(b=>b.onclick=()=>{if(answered)return;selected=+b.dataset.i;renderOptions()});document.getElementById('feedback').innerHTML='';document.getElementById('validate').hidden=false;document.getElementById('next').hidden=true;document.getElementById('score').textContent=`Score : ${score} / ${questions.length}`;answered=false;selected=-1;renderOptions()}
+function renderOptions(){document.querySelectorAll('.quiz-option').forEach(b=>b.classList.toggle('selected',+b.dataset.i===selected))}
+document.getElementById('validate').onclick=()=>{if(selected<0){document.getElementById('feedback').innerHTML='<div class="feedback bad">Sélectionne une réponse avant de valider.</div>';return}if(answered)return;answered=true;const q=questions[qi],ok=selected===q.a;if(ok)score++;document.getElementById('feedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><strong>${ok?'Bonne réponse !':'Pas tout à fait.'}</strong><br>Réponse attendue : ${String.fromCharCode(65+q.a)} — ${q.o[q.a]}.<br>${q.e}</div>`;document.getElementById('validate').hidden=true;document.getElementById('next').hidden=false;document.getElementById('score').textContent=`Score : ${score} / ${questions.length}`;document.querySelectorAll('.quiz-option').forEach(b=>b.disabled=true)};
+document.getElementById('next').onclick=()=>{if(qi<questions.length-1){qi++;renderQ()}else{document.getElementById('qcount').textContent='Quiz terminé';document.getElementById('question').textContent=`Résultat : ${score} / ${questions.length}`;document.getElementById('options').innerHTML='<p>Tu peux recommencer pour consolider tes acquis.</p>';document.getElementById('feedback').innerHTML='<div class="callout">Relis les explications des questions manquées puis refais le quiz.</div>';document.getElementById('next').textContent='Recommencer';document.getElementById('next').onclick=()=>{qi=0;score=0;document.getElementById('next').textContent='Question suivante →';renderQ()}}};
+renderQ();
+const terms=[["Ischémie","Diminution ou arrêt de l'apport de sang artériel dans un tissu ou un organe."],["Nécrose","Mort cellulaire ou tissulaire irréversible."],["Orthopnée","Difficulté respiratoire qui oblige la personne à rester assise pour mieux respirer."],["Inotropisme","Capacité de contraction des fibres musculaires myocardiques."],["Tachycardie","Fréquence cardiaque supérieure à 100 battements par minute chez l'adulte, selon la définition de la fiche."],["OAP","Œdème aigu du poumon : accumulation de liquide dans les espaces pulmonaires, notamment les alvéoles."],["Myocarde","Muscle cardiaque responsable de la contraction du cœur."],["Septum interventriculaire","Cloison qui sépare le ventricule droit du ventricule gauche."],["Troponine","Protéine cardiaque dosée dans le sang ; son élévation peut signaler une lésion myocardique."],["BNP","Peptide natriurétique utilisé notamment dans l'évaluation d'une insuffisance cardiaque."]];
+function drawTerms(filter=''){document.getElementById('terms').innerHTML=terms.filter(t=>(t[0]+' '+t[1]).toLowerCase().includes(filter.toLowerCase())).map(t=>`<article class="card"><h3>${t[0]}</h3><p>${t[1]}</p><button class="secondary" onclick="speak(${JSON.stringify(t[0]+'. '+t[1])})">▶ Écouter</button></article>`).join('')||'<p>Aucun terme trouvé.</p>'}
+drawTerms();document.getElementById('searchLex').addEventListener('input',e=>drawTerms(e.target.value));
+</script>
+</body></html>

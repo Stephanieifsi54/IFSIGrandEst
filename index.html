@@ -5,19 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mes cours IFSI</title>
 <style>
-body{font-family:Arial,sans-serif;background:#f2f6fa;margin:0;padding:25px;color:#24364b}
-main{max-width:700px;margin:auto}
-h1{text-align:center;color:#245b83}
-p{text-align:center}
-a{display:block;background:white;color:#245b83;text-decoration:none;padding:18px;margin:12px 0;border-radius:12px;box-shadow:0 2px 7px #ddd;font-weight:bold}
-a:hover{background:#dcecf7}
+* { box-sizing: border-box; }
+body { margin: 0; background: #f2f6fa; color: #24364b; font-family: Arial, sans-serif; }
+header { background: #245b83; color: white; padding: 30px 15px; text-align: center; }
+h1 { margin: 0; font-size: 27px; }
+header p { margin-bottom: 0; }
+main { max-width: 850px; margin: 30px auto; padding: 0 16px; }
+h2 { font-size: 21px; }
+#recherche { width: 100%; padding: 15px; font-size: 16px; border: 1px solid #ccd6e0; border-radius: 10px; margin-bottom: 20px; }
+.cours { display: block; background: white; padding: 18px; margin: 12px 0; border-radius: 12px; color: #245b83; font-weight: bold; text-decoration: none; box-shadow: 0 2px 7px #00000012; }
+.cours:hover { background: #e4f1fa; }
+footer { text-align: center; padding: 25px; color: #687987; font-size: 13px; }
 </style>
 </head>
 <body>
-<main>
+<header>
 <h1>Mes cours IFSI</h1>
-<p>Première année – Choisissez un cours</p>
-<a href="mediforma_endocrinien-1.html">Endocrinologie</a>
+<p>Première année - Supports de révision</p>
+</header>
+<main>
+<h2>Bibliothèque de cours</h2>
+<input id="recherche" placeholder="Rechercher un cours..." oninput="filtrer()">
+<div id="liste"></div>
 </main>
+<footer>Bibliothèque personnelle IFSI</footer>
+<script>
+const cours = [
+  { titre: "Endocrinologie", fichier: "mediforma_endocrinien-1.html" },
+  { titre: "Plateforme de cours", fichier: "mediforma_module6_plateforme_in.html" },
+  { titre: "Immunologie et infectiologie", fichier: "mediforma_module7_immunologie_infectiologie.html" },
+  { titre: "Module 7 - Version renforcée 2", fichier: "mediforma_module7_version_renforcee-2.html" },
+  { titre: "Module 7 - Version renforcée 4", fichier: "mediforma_module7_version_renforcee-4.html" },
+  { titre: "Parcours 3 ans - Version 1", fichier: "mediforma_parcours_3_ans-3(1).html" },
+  { titre: "Parcours 3 ans - Version 3", fichier: "mediforma_parcours_3_ans-3.html" },
+  { titre: "Réparation - 300 exercices", fichier: "mediforma_reparation_300_exercices_corrige-1.html" },
+  { titre: "Système rénal", fichier: "mediforma_systeme_renal_420-2.html" }
+];
+function afficher(liste) {
+  const zone = document.getElementById("liste");
+  zone.innerHTML = "";
+  liste.forEach(c => {
+    const lien = document.createElement("a");
+    lien.className = "cours";
+    lien.href = c.fichier;
+    lien.textContent = c.titre + " →";
+    zone.appendChild(lien);
+  });
+  if (liste.length === 0) zone.textContent = "Aucun cours trouvé.";
+}
+function filtrer() {
+  const recherche = document.getElementById("recherche").value.toLowerCase();
+  afficher(cours.filter(c => c.titre.toLowerCase().includes(recherche)));
+}
+afficher(cours);
+</script>
 </body>
 </html>

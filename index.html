@@ -5,35 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mes cours</title>
   <style>
-    :root{color-scheme:dark}body{font-family:system-ui,Arial,sans-serif;background:#101827;color:#f8fafc;max-width:780px;margin:55px auto;padding:0 20px}h1{font-size:2rem}p{color:#cbd5e1}#cours{display:grid;gap:12px;margin-top:25px}a.cours{display:block;padding:17px 20px;background:#1e293b;color:#93c5fd;border-radius:12px;text-decoration:none;border:1px solid #334155}a.cours:hover{background:#334155}#etat{color:#cbd5e1}
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, Arial, sans-serif; background: #101827; color: #f8fafc; max-width: 780px; margin: 55px auto; padding: 0 20px; }
+    h1 { font-size: 2rem; }
+    p, #etat { color: #cbd5e1; }
+    #cours { display: grid; gap: 12px; margin-top: 25px; }
+    a.cours { display: block; padding: 17px 20px; background: #1e293b; color: #93c5fd; border-radius: 12px; text-decoration: none; border: 1px solid #334155; overflow-wrap: anywhere; }
+    a.cours:hover, a.cours:focus-visible { background: #334155; }
+    small { display: block; color: #cbd5e1; margin-top: 5px; }
   </style>
 </head>
 <body>
   <h1>📚 Mes cours</h1>
   <p>Sélectionne un cours pour l'ouvrir.</p>
-  <div id="etat">Chargement des cours…</div>
+  <div id="etat" role="status">Chargement des cours…</div>
   <main id="cours"></main>
+
   <script>
+    // Dépôt GitHub public qui héberge ce site.
+    const PROPRIETAIRE = 'Stephanieifsi54';
+    const DEPOT = 'IFSIGrandEst';
+    const BRANCHE = 'main';
+
     async function afficherCours() {
       const etat = document.getElementById('etat');
       const liste = document.getElementById('cours');
+      liste.replaceChildren();
+
       try {
-        const reponse = await fetch('./cours.json', {cache:'no-store'});
-        if (!reponse.ok) throw new Error('Liste indisponible');
-        const fichiers = await reponse.json();
-        if (!Array.isArray(fichiers)) throw new Error('Format invalide');
-        etat.textContent = fichiers.length ? '' : 'Aucun cours disponible pour le moment.';
-        for (const fichier of fichiers) {
+        // GitHub fournit la liste des fichiers, y compris dans les sous-dossiers.
+        const api = `https://api.github.com/repos/${encodeURIComponent(PROPRIETAIRE)}/${encodeURIComponent(DEPOT)}/git/trees/${encodeURIComponent(BRANCHE)}?recursive=1`;
+        const reponse = await fetch(api, { headers: { Accept: 'application/vnd.github+json' }, cache: 'no-store' });
+        if (!reponse.ok) throw new Error(`GitHub API : HTTP ${reponse.status}`);
+        const donnees = await reponse.json();
+        if (!Array.isArray(donnees.tree) || donnees.truncated) throw new Error('Liste des fichiers incomplète');
+
+        const fichiers = donnees.tree
+          .filter(f => f.type === 'blob' && /\.html?$/i.test(f.path))
+          .filter(f => !f.path.split('/').some(part => part.startsWith('.')))
+          .filter(f => !/^index\.html?$/i.test(f.path.split('/').pop()))
+          .map(f => f.path)
+          .sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+
+        if (!fichiers.length) {
+          etat.textContent = 'Aucun cours HTML trouvé dans le dépôt.';
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+        for (const chemin of fichiers) {
           const lien = document.createElement('a');
           lien.className = 'cours';
-          lien.href = fichier;
-          lien.textContent = decodeURIComponent(fichier.split('/').pop()).replace(/\.html?$/i,'').replace(/[-_]/g,' ');
-          liste.appendChild(lien);
+          // Liens relatifs : compatibles avec l'adresse GitHub Pages du dépôt.
+          lien.href = chemin.split('/').map(encodeURIComponent).join('/');
+          const parties = chemin.split('/');
+          lien.textContent = parties.pop().replace(/\.html?$/i, '').replace(/[-_]/g, ' ');
+          if (parties.length) {
+            const dossier = document.createElement('small');
+            dossier.textContent = parties.join(' / ');
+            lien.appendChild(dossier);
+          }
+          fragment.appendChild(lien);
         }
+        liste.appendChild(fragment);
+        etat.textContent = `${fichiers.length} cours disponible${fichiers.length > 1 ? 's' : ''}.`;
       } catch (erreur) {
-        etat.textContent = 'Impossible de charger les cours. Vérifie que GitHub Pages est activé et que cours.json existe.';
+        console.error('Chargement des cours :', erreur);
+        etat.textContent = 'Impossible de récupérer la liste des cours depuis GitHub. Vérifie que le dépôt est public, puis réessaie plus tard.';
       }
     }
+
     afficherCours();
   </script>
 </body>

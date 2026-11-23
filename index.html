@@ -1,54 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mes cours IFSI</title>
-<style>
-* { box-sizing: border-box; }
-body { margin: 0; font-family: Arial, sans-serif; background: #f2f6fa; color: #24364b; }
-header { background: #245b83; color: white; padding: 30px 15px; text-align: center; }
-h1 { margin: 0; font-size: 27px; }
-header p { margin-bottom: 0; }
-main { max-width: 850px; margin: 30px auto; padding: 0 16px; }
-input { width: 100%; padding: 16px; font-size: 16px; border: 1px solid #ccd6e0; border-radius: 10px; margin-bottom: 22px; }
-.cours { display: block; background: white; padding: 19px; margin: 12px 0; border-radius: 12px; color: #245b83; font-weight: bold; text-decoration: none; box-shadow: 0 2px 7px #ddd; }
-.cours:hover { background: #e6f1fa; }
-footer { text-align: center; padding: 25px; color: #687987; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mes cours</title>
+  <style>
+    :root{color-scheme:dark}body{font-family:system-ui,Arial,sans-serif;background:#101827;color:#f8fafc;max-width:780px;margin:55px auto;padding:0 20px}h1{font-size:2rem}p{color:#cbd5e1}#cours{display:grid;gap:12px;margin-top:25px}a.cours{display:block;padding:17px 20px;background:#1e293b;color:#93c5fd;border-radius:12px;text-decoration:none;border:1px solid #334155}a.cours:hover{background:#334155}#etat{color:#cbd5e1}
+  </style>
 </head>
 <body>
-<header><h1>Mes cours IFSI</h1><p>Première année - Supports de révision</p></header>
-<main><input id="recherche" placeholder="Rechercher un cours..." oninput="filtrer()"><div id="liste"></div></main>
-<footer>Bibliothèque personnelle IFSI</footer>
-<script>
-const cours = [
-  { titre: "Cardiovasculaire", fichier: "cardiovasculaire.html" },
-  { titre: "Endocrinologie", fichier: "endocrinien.html" },
-  { titre: "Immunologie et infectiologie", fichier: "immunologie.html" },
-  { titre: "Immunologie - Version renforcée 2", fichier: "immunologie1.html" },
-  { titre: "Immunologie - Version renforcée 4", fichier: "immunologie2.html" },
-  { titre: "Plateforme de cours", fichier: "plateforme.html" },
-  { titre: "Respiration - Exercices", fichier: "respiration.html" },
-  { titre: "Système rénal", fichier: "systemerenal.html" }
-];
-function afficher(liste) {
-  const zone = document.getElementById("liste");
-  zone.innerHTML = "";
-  liste.forEach(c => {
-    const lien = document.createElement("a");
-    lien.className = "cours";
-    lien.href = encodeURI(c.fichier);
-    lien.textContent = c.titre + " →";
-    zone.appendChild(lien);
-  });
-  if (liste.length === 0) zone.textContent = "Aucun cours trouvé.";
-}
-function filtrer() {
-  const recherche = document.getElementById("recherche").value.toLowerCase();
-  afficher(cours.filter(c => c.titre.toLowerCase().includes(recherche)));
-}
-afficher(cours);
-</script>
+  <h1>📚 Mes cours</h1>
+  <p>Sélectionne un cours pour l'ouvrir.</p>
+  <div id="etat">Chargement des cours…</div>
+  <main id="cours"></main>
+  <script>
+    async function afficherCours() {
+      const etat = document.getElementById('etat');
+      const liste = document.getElementById('cours');
+      try {
+        const reponse = await fetch('./cours.json', {cache:'no-store'});
+        if (!reponse.ok) throw new Error('Liste indisponible');
+        const fichiers = await reponse.json();
+        if (!Array.isArray(fichiers)) throw new Error('Format invalide');
+        etat.textContent = fichiers.length ? '' : 'Aucun cours disponible pour le moment.';
+        for (const fichier of fichiers) {
+          const lien = document.createElement('a');
+          lien.className = 'cours';
+          lien.href = fichier;
+          lien.textContent = decodeURIComponent(fichier.split('/').pop()).replace(/\.html?$/i,'').replace(/[-_]/g,' ');
+          liste.appendChild(lien);
+        }
+      } catch (erreur) {
+        etat.textContent = 'Impossible de charger les cours. Vérifie que GitHub Pages est activé et que cours.json existe.';
+      }
+    }
+    afficherCours();
+  </script>
 </body>
 </html>

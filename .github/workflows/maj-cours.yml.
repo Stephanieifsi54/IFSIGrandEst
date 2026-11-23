@@ -6,6 +6,7 @@ on:
       - '**/*.html'
       - '**/*.htm'
       - '.github/workflows/maj-cours.yml'
+      - 'cours.json'
   workflow_dispatch:
 permissions:
   contents: write

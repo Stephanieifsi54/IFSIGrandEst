@@ -1,0 +1,42 @@
+name: Mettre à jour la liste des cours
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.htm'
+      - '.github/workflows/maj-cours.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  generer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Générer cours.json
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from urllib.parse import quote
+          racine = Path('.')
+          cours = []
+          for p in racine.rglob('*'):
+              if not p.is_file() or p.suffix.lower() not in ('.html', '.htm'):
+                  continue
+              if any(part.startswith('.') for part in p.parts) or p.name.lower() in ('index.html', 'index.htm'):
+                  continue
+              cours.append(quote(p.as_posix(), safe='/'))
+          cours.sort(key=str.casefold)
+          Path('cours.json').write_text(json.dumps(cours, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+      - name: Enregistrer la liste si elle a changé
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cours.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualiser automatiquement la liste des cours"
+            git push
+          fi
